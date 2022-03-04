@@ -1,0 +1,68 @@
+
+- name: Install System Packages 1 (build-essential, cmake, pkg-config, pthread)
+  become: true
+  apt:
+    update_cache: true
+    name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev", "ca-certificates", "gnupg", "lsb-release"]
+  tags:
+    - install
+    - core
+
+- name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
+  become: true
+  apt:
+    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+  tags:
+    - install
+    - core
+
+- name: Install System Packages 3 (the rest)
+  become: true
+  apt:
+    name: ["curl", "htop", "jq", "lsof", "python3-pip", "dconf-editor", "pavucontrol", "moreutils", "bat",  "exa"]
+  tags:
+    - install
+    - core
+
+- name: docker GPG key
+  become: true
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+- name: docker APT repo
+  shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+- name: install docker
+  apt: 
+    name: docker-ce
+    update_cache: true
+
+- name: Install Clang
+  become: true
+  apt:
+    name: ["clang", "clang-11", "clang-12"]
+  tags:
+    - install
+    - core
+
+- name: Insomnia
+  apt: 
+    deb: https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website
+
+- name: Install Chrome
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+- name: Install lazydocker
+  shell: curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+
+- name: Install packages
+  become: true
+  apt:
+    name: [ "tmux", "fzf", "gimp", "xclip", "gnome-tweak-tool", "openvpn", "redis-server"]
+  tags:
+    - install
+    - productivity
+
+# - name: Install LSD
+#   become: true
+#   shell: snap install lsd

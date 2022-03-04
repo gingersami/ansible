@@ -1,0 +1,34 @@
+- name: Add 1Password deps
+  become: true
+  shell:  chmod 755 ./install-1password.sh && ./install-1password.sh
+  tags:
+    - 1password
+    - install
+    - personal
+- name: Install 1Password
+  apt: 
+    name: 1password
+    update_cache: true
+
+
+- name: Spotify key
+  become: true
+  apt_key: 
+    url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+    state: present
+
+- name: spotify repo
+  become: true
+  apt_repository:
+    repo: deb http://repository.spotify.com stable non-free
+    state: present
+    filename: spotify
+
+- name: install spotify
+  become: true
+  apt:
+    name: spotify-client
+    update_cache: true
+  
+
+
