@@ -16,10 +16,10 @@
         - install
         - core
   tasks:
-    # - include: tasks/setup-core.yml
-    # - include: tasks/setup-zsh.yml
-    # - include: tasks/setup-node.yml
-    - include: tasks/setup-personal.yml
-    # - name: Install JB toolbox
-    #   become: true
-    #   shell: chmod 755 ./install-jetbrains-toolbox.sh && ./install-jetbrains-toolbox.sh
+     - include: tasks/setup-core.yml
+     - include: tasks/setup-zsh.yml
+     - include: tasks/setup-node.yml
+     - include: tasks/setup-personal.yml
+    #  - name: Install JB toolbox
+    #    become: true
+    #    shell: chmod 755 ./install-jetbrains-toolbox.sh && ./install-jetbrains-toolbox.sh
