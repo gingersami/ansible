@@ -95,14 +95,6 @@
     - install
     - core
 
-- name: Install Clang
-  become: true
-  apt:
-    name: ["clang", "clang-11", "clang-12"]
-  tags:
-    - install
-    - core
-
 - name: Insomnia
   apt:
     deb: https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website

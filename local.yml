@@ -1,7 +1,9 @@
 - hosts: localhost
   become: true
   vars:
-    source_key: "./.ssh/rsa"
+    source_key: "./.ssh/id_rsa"
+    source_folder: './.ssh'
+    dest_folder: "{{ lookup('env', 'HOME') }}/.ssh/"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     personal: "{{ lookup('env', 'HOME') }}/personal"
 
@@ -20,6 +22,7 @@
      - include: tasks/setup-zsh.yml
      - include: tasks/setup-node.yml
      - include: tasks/setup-personal.yml
-    #  - name: Install JB toolbox
-    #    become: true
-    #    shell: chmod 755 ./install-jetbrains-toolbox.sh && ./install-jetbrains-toolbox.sh
+     - include: tasks/setup-ssh.yml
+     - name: Install JB toolbox
+       become: true
+       shell: chmod 755 ./install-jetbrains-toolbox.sh && ./install-jetbrains-toolbox.sh
