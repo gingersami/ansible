@@ -27,3 +27,4 @@
      - name: Install JB toolbox
        become: true
        shell: chmod 755 ./install-jetbrains-toolbox.sh && ./install-jetbrains-toolbox.sh
+       ignore_errors: yes
