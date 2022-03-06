@@ -19,6 +19,7 @@
         - core
   tasks:
      - include: tasks/setup-core.yml
+     - include: tasks/setup-slack.yml
      - include: tasks/setup-zsh.yml
      - include: tasks/setup-node.yml
      - include: tasks/setup-personal.yml
