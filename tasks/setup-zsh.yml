@@ -22,3 +22,16 @@
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags: *tags_for_zsh_tasks
+
+- name: Clone Loki Shell
+  ansible.builtin.git:
+    depth: 1
+    repo: 'https://github.com/slim-bean/loki-shell.git'
+    dest: '~/.loki-shell'
+- name: Install Loki Shell
+  expect:
+    command: ~/.loki-shell/install
+    responses:
+      "Do you want to install Loki?": y
+      "[y] to run Loki in Docker, [n] to run Loki as a binary": y
+      Enter the URL for your Loki server or press enter for default "http://localhost:4100": http://localhost:4100

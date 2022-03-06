@@ -4,16 +4,16 @@
     update_cache: true
     name:
       [
-        "build-essential",
-        "cmake",
-        "pkg-config",
-        "libpthread-stubs0-dev",
-        "ca-certificates",
-        "gnupg",
-        "lsb-release",
-        "software-properties-common",
-        "apt-transport-https",
-        "wget",
+          "build-essential",
+          "cmake",
+          "pkg-config",
+          "libpthread-stubs0-dev",
+          "ca-certificates",
+          "gnupg",
+          "lsb-release",
+          "software-properties-common",
+          "apt-transport-https",
+          "wget",
       ]
   tags:
     - install
@@ -22,7 +22,7 @@
 - name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
   become: true
   apt:
-    name: ["lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext" ]
   tags:
     - install
     - core
@@ -32,19 +32,24 @@
   apt:
     name:
       [
-        "curl",
-        "htop",
-        "jq",
-        "lsof",
-        "python3-pip",
-        "dconf-editor",
-        "pavucontrol",
-        "moreutils",
-        "bat",
+          "curl",
+          "htop",
+          "jq",
+          "lsof",
+          "python3-pip",
+          "dconf-editor",
+          "pavucontrol",
+          "moreutils",
+          "bat",
       ]
   tags:
     - install
     - core
+
+- name: Install lsd
+  become: true
+  apt:
+    deb: https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb
 
 - name: docker GPG key
   become: true
@@ -94,6 +99,17 @@
   tags:
     - install
     - core
+- name: install Fabric
+  become: true
+  pip:
+    name: Fabric3
+    executable: pip3
+
+- name: install pexpect
+  become: true
+  pip:
+    name: pexpect
+    executable: pip3
 
 - name: Insomnia
   apt:
@@ -120,17 +136,17 @@
   apt:
     name:
       [
-        "tmux",
-        "fzf",
-        "gimp",
-        "xclip",
-        "gnome-tweak-tool",
-        "openvpn",
-        "redis-server",
+          "tmux",
+          "fzf",
+          "gimp",
+          "xclip",
+          "gnome-tweak-tool",
+          "openvpn",
+          "redis-server",
       ]
   tags:
     - install
     - productivity
-# - name: Install LSD
-#   become: true
-#   shell: snap install lsd
+
+- name: set python version
+  shell: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
