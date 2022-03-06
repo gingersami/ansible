@@ -18,12 +18,12 @@
         - install
         - core
   tasks:
-     - include: tasks/setup-core.yml
-     - include: tasks/setup-slack.yml
-     - include: tasks/setup-zsh.yml
-     - include: tasks/setup-node.yml
-     - include: tasks/setup-personal.yml
-     - include: tasks/setup-ssh.yml
+     - include_tasks: tasks/setup-core.yml
+     - include_tasks: tasks/setup-slack.yml
+     - include_tasks: tasks/setup-zsh.yml
+     - include_tasks: tasks/setup-node.yml
+     - include_tasks: tasks/setup-personal.yml
+     - include_tasks: tasks/setup-ssh.yml
      - name: Install JB toolbox
        become: true
        shell: chmod 755 ./install-jetbrains-toolbox.sh && ./install-jetbrains-toolbox.sh
