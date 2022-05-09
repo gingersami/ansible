@@ -147,6 +147,3 @@
   tags:
     - install
     - productivity
-
-- name: set python version
-  shell: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
